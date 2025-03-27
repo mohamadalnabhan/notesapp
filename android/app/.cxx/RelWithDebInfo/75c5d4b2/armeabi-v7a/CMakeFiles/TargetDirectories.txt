@@ -1,0 +1,2 @@
+C:/Users/MYCOM/Desktop/flutter projects/FirebasePractice/idkfirbase/android/app/.cxx/RelWithDebInfo/75c5d4b2/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/MYCOM/Desktop/flutter projects/FirebasePractice/idkfirbase/android/app/.cxx/RelWithDebInfo/75c5d4b2/armeabi-v7a/CMakeFiles/rebuild_cache.dir

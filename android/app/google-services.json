@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "639207536443",
+    "project_id": "fir-course-52b1e",
+    "storage_bucket": "fir-course-52b1e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639207536443:android:21dabde300158d968ce91e",
+        "android_client_info": {
+          "package_name": "com.example.idkfirbase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAULfM7Hdbn6LbRPchKf2ZYPcAhmZXvoMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639207536443:android:a05817e73b75dfe18ce91e",
+        "android_client_info": {
+          "package_name": "com.example.project1_fr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAULfM7Hdbn6LbRPchKf2ZYPcAhmZXvoMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
