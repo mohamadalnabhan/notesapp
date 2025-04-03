@@ -1,20 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:idkfirbase/components/customaddtf.dart';
 import 'package:idkfirbase/components/textformfield.dart';
+import 'package:idkfirbase/note/viewnote.dart';
 
-class Addcategory extends StatefulWidget {
-  const Addcategory({super.key});
+class Editnote extends StatefulWidget {
+  final String notedocid ;
+  final String categoreyId ;
+  final String value ;
+  const Editnote({super.key, required this.notedocid, required this.categoreyId, required this.value});
 
   @override
-  State<Addcategory> createState() => _AddcategoryState();
+  State<Editnote> createState() => _EditnoteState();
 }
 
-class _AddcategoryState extends State<Addcategory> {
+class _EditnoteState extends State<Editnote> {
   bool isLoading = false;
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController name = TextEditingController();
+  TextEditingController note = TextEditingController();
 
 // CollectionReference categories =
 //     FirebaseFirestore.instance.collection('categories');
@@ -28,20 +31,22 @@ class _AddcategoryState extends State<Addcategory> {
 //       .catchError((error) => print("Failed to add category: $error"));
 // }
 
-  CollectionReference categories =
-      FirebaseFirestore.instance.collection("categories");
-  addCategory() async {
+
+  editNote() async {
+      CollectionReference notes =
+      FirebaseFirestore.instance.collection("categories").doc(widget.categoreyId).collection("note");
     if (formState.currentState!.validate()) {
+    
       try {
         isLoading = true ;
         setState(() {
           
         });
-        DocumentReference reference = await categories.add(
-            {"name": name.text, "id": FirebaseAuth.instance.currentUser!.uid});
-        print("category added");
-        Navigator.of(context).pushNamedAndRemoveUntil("home",
-            (route) => false); // ✅ Removes all previous pages and shows home
+         await notes.doc(widget.notedocid).update({"note" : note.text});
+        print("note added");
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Viewnote(categoreyId: widget.categoreyId)));
+        
+        // ✅ Removes all previous pages and shows home
       } catch (e) {
         isLoading = false;
         setState(() {
@@ -51,17 +56,24 @@ class _AddcategoryState extends State<Addcategory> {
       }
     }
   }
+
+  @override
+  void initState() {
+    note.text =widget.value ;
+    super.initState();
+    
+  }
 @override
   void dispose(){
     super.dispose();
-    name.dispose();
+    note.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("add category"),
+        title: Text("save"),
       ),
       body:isLoading ? Center(child: CircularProgressIndicator()):
        Form(
@@ -72,7 +84,7 @@ class _AddcategoryState extends State<Addcategory> {
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                   child: Customaddtf(
                       hintText: "enter the name of ur category",
-                      Mycontroller: name,
+                      Mycontroller: note,
                       validator: (val) {
                         if (val == "") {
                           return "it can not be empty";
@@ -83,7 +95,7 @@ class _AddcategoryState extends State<Addcategory> {
                 color: Colors.orangeAccent,
                 title: "add",
                 onPressed: () {
-                  addCategory();
+                  editNote();
                 },
               ),
             ],

@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:idkfirbase/auth/signup.dart';
 import 'package:idkfirbase/components/textformfield.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
@@ -33,8 +32,8 @@ class _LoginState extends State<Login> {
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
     );
 
     // Once signed in, return the UserCredential
@@ -42,6 +41,7 @@ class _LoginState extends State<Login> {
     Navigator.of(context).pushNamedAndRemoveUntil("homepage", (route) => false);
   }
 
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

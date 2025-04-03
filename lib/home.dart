@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:idkfirbase/categories/updatecategory.dart';
+import 'package:idkfirbase/note/viewnote.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -70,6 +71,9 @@ class _HomeState extends State<Home> {
               itemCount: data.length,
               itemBuilder: (context, index) {
                 return InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Viewnote(categoreyId: data[index].id)));
+                  },
                     onLongPress: () {
                       AwesomeDialog(
                         context: context,

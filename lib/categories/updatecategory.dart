@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:idkfirbase/components/customaddtf.dart';
 import 'package:idkfirbase/components/textformfield.dart';
@@ -31,7 +29,8 @@ class _UpdatecategoryState extends State<Updatecategory> {
 //       .then((value) => print("category Added"))
 //       .catchError((error) => print("Failed to add category: $error"));
 // }
-void initState(){
+@override
+  void initState(){
   super.initState();
   name.text = widget.oldName ; // widget to acess
 }
@@ -45,7 +44,7 @@ void initState(){
           
         });
         await categories.doc(widget.docId)//auto generated
-        .update( {"name" :name.text});
+        .set( {"name" :name.text},SetOptions(merge: true));
         print("category updated");
         Navigator.of(context).pushNamedAndRemoveUntil("home",
             (route) => false); // ✅ Removes all previous pages and shows home
@@ -57,6 +56,11 @@ void initState(){
         print(e);
       }
     }
+  }
+@override
+  void dispose(){
+    super.dispose();
+    name.dispose();
   }
 
   @override
