@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:idkfirbase/auth/signup.dart';
 import 'package:idkfirbase/categories/addcategory.dart';
-import 'package:idkfirbase/filterr.dart';
-
 
 import 'firebase_options.dart';
 import 'auth/login.dart';
@@ -52,17 +50,15 @@ class _MyAppState extends State<MyApp> {
               iconTheme: IconThemeData(color: Colors.orangeAccent, size: 25))),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Firebase Setup',
-      home: Filterr(),
-      // (FirebaseAuth.instance.currentUser != null &&
-      //         FirebaseAuth.instance.currentUser!.emailVerified)
-      //     ? Home()
-      //     : Login(),
+      home: (FirebaseAuth.instance.currentUser != null &&
+              FirebaseAuth.instance.currentUser!.emailVerified)
+          ? Home()
+          : Login(),
       routes: {
         "signup": (context) => Signup(),
         "login": (context) => Login(),
         "home": (context) => Home(),
         "addcategory": (context) => Addcategory(),
-       
       },
     );
   }
