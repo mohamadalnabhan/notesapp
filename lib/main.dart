@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
               iconTheme: IconThemeData(color: Colors.orangeAccent, size: 25))),
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false ,
       title: 'Flutter Firebase Setup',
       home: (FirebaseAuth.instance.currentUser != null &&
               FirebaseAuth.instance.currentUser!.emailVerified)
